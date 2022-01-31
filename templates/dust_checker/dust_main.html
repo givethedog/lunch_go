@@ -1,0 +1,17 @@
+{% extends 'main.html' %}
+
+{% block content %}
+<center>
+<div class="card" style="width: 20rem;">
+  <img src="/static/images/dust.webp" class="card-img-top" alt="...">
+  <center>
+  <div class="card-body">
+    <h2 class="card-title">미세먼지 수치</h2>
+      <p class="card-text">{{station}} - {{pm10}} ppm</p>
+      <!-- <p class="card-text">기준시간 : {{updateTime}}</p> -->
+    <a href="{% url 'dust_checker:detail'%}" class="btn btn-primary">>>> 자세히</a>
+  </div>
+  </center>
+</div>
+</center>
+{% endblock %}

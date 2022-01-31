@@ -19,7 +19,10 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    path('dust_checker', include('dust_checker.urls')),
     path('', include('common.urls')),
     path('admin/', admin.site.urls),
     # path('', views.index, name='index')
 ]
+
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_URL)
