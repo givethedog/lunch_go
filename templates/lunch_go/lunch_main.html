@@ -3,15 +3,88 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>점심먹자</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        div {
+            width: 90%;
+            text-align: center;
+            margin: 0 auto;
+            /* outline: 1px solid red !important; /* div 확인용 */ */
+        }
+        #kakao_map {
+            width: 90%;
+            height: 50%;
+            margin: 0 auto;
+        }
+    </style>
 </head>
 <body>
+
 {% extends 'main.html' %}
 {% block content %}
-    lunch_main 입니다.
-    <div id="map" style="width:500px;height:400px;"></div>
+    
+    <div>
+        <a href="#create_team" button type="button" class="btn btn-outline-primary">새 팀 만들기</a>
+    </div>
+    
+    <!-- https://getbootstrap.com/docs/4.1/components/collapse/ -->
+    
+    <div class="accordion" id="accordionExample">
+      <div class="card">
+        <div class="card-header" id="headingOne">
+          <h5 class="mb-0">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+              1팀 - 쭈꾸미 먹으러 갈사람!? 4/6
+            </button>
+          </h5>
+        </div>
+
+        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+          <div class="card-body">
+            <div id="hashtag">#쭈꾸미</div>
+            <div id="contents">12시 50분 1층 로비에서 출발 합니다!</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingTwo">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
+              2팀 - 마라탕 조지실!? 5/6
+            </button>
+          </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+          <div class="card-body">
+            <div id="hashtag">#마라탕</div>
+            <div id="contents">마라탕 먹고 스트레스 풀러 가실부운~~</div>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header" id="headingThree">
+          <h5 class="mb-0">
+            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+              3팀 - 돈까스 후딱 먹고오실 분 1/6
+            </button>
+          </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+          <div class="card-body">
+            <div id="hashtag">#돈까스</div>
+            <div id="contents">1시 미팅이라 후딱 먹고 오실 분 구해요!</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div id="kakao_map"></div>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=380131be80bc9b322dd7c70889b55fe0"></script>
 	<script>
-		var container = document.getElementById('map');
+		var container = document.getElementById('kakao_map');
 		var options = {
 			center: new kakao.maps.LatLng(37.56009445666922, 126.98293805664204),
 			level: 3
@@ -30,13 +103,17 @@
         marker.setMap(map);
 
         // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-        // marker.setMap(null);   
+        // marker.setMap(null);
+        function relayout() {    
+        // 지도를 표시하는 div 크기를 변경한 이후 지도가 정상적으로 표출되지 않을 수도 있습니다
+        // 크기를 변경한 이후에는 반드시  map.relayout 함수를 호출해야 합니다 
+        // window의 resize 이벤트에 의한 크기변경은 map.relayout 함수가 자동으로 호출됩니다
+        map.relayout();
+        }
                 
 	</script>
+    
 {% endblock %}
-
-    
-    
     
 </body>
 </html>
