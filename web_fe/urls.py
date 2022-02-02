@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 urlpatterns = [
+    path('lunch_go', include('lunch_go.urls')),
     path('dust_checker', include('dust_checker.urls')),
     path('', include('common.urls')),
     path('admin/', admin.site.urls),
