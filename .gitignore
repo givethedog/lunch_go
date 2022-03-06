@@ -1,4 +1,5 @@
 /lunch_go_venv
+/venv
 *.sqlite3
 
 
